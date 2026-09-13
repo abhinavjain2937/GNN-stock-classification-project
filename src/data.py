@@ -106,7 +106,7 @@ opening = opening[close_df.columns]
 opening = opening.dropna(axis=0,how='any')
 
 # 1. Daily return
-r1 = close_df.pct_change()
+r1 = close_df.pct_change().dropna()
 print("Returns daily: ",r1)
 r5 = close_df.pct_change(5)
 r20 = close_df.pct_change(20)
@@ -156,9 +156,9 @@ date_df['Target'] = date_df['Target'].astype(int).astype(str)
 print(f" the  new data ------ 10 sep 2026:\n{date_df.head()} ")
 
 
+print("_______________________________________________________________________")
 
-
-
+print(r1)
 # Location of this Python file
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -175,7 +175,7 @@ output_path2 = processed_dir / "Return1.csv"
 
 csv_ready_df.to_csv(output_path, index=False)
 
-csv_ready_df.to_csv(output_path2, index=False)
+return_csv.to_csv(output_path2, index=False)
 
 
 print(f"Processed dataset successfully saved to:")

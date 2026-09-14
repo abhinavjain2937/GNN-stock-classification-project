@@ -1,17 +1,17 @@
 import pandas as pd
 import os 
-import numpy as np
 from pathlib import Path
 from graph_features import StockGraph
 import torch
 from torch_geometric.data import Data
+from sklearn.preprocessing import StandardScaler
 
 class GraphData:
     def __init__(self):
 
         self.BASE_DIR = Path(__file__).resolve().parent.parent
-        self.file_path = BASE_DIR/'data'/'processed'/'nifty50_features.csv'
-        self.file_path_return = BASE_DIR/'data'/'processed'/'Return1.csv'
+        self.file_path = self.BASE_DIR/'data'/'processed'/'nifty50_features.csv'
+        self.file_path_return = self.BASE_DIR/'data'/'processed'/'Return1.csv'
 
     def data_import(self):
         if os.path.exists(self.file_path):
@@ -41,10 +41,13 @@ class GraphData:
         features = [i for i in data.columns if i not in ['Ticker','node_id','Target']]
         print("features : ",features)
 
+        scaler = StandardScaler()
+        scaled_features = scaler.fit_transform(data[features])
+
 
         # graph features
         x = torch.tensor(
-            data[features].values,
+            scaled_features,
             dtype=torch.float
         )
 
@@ -65,9 +68,6 @@ class GraphData:
         return self.data_import()
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-file_path = BASE_DIR/'data'/'processed'/'nifty50_features.csv'
-file_path_return = BASE_DIR/'data'/'processed'/'Return1.csv'
 
 G = GraphData()
 graph_data = G.get_data()

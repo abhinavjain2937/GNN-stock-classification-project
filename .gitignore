@@ -31,3 +31,4 @@ Desktop.ini
 data/
 *.csv
 *.xlsx
+GNN_model.pth

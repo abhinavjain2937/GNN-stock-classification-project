@@ -86,22 +86,23 @@ class StockGraph:
         )
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-file_path = BASE_DIR/"data"/"processed"/"Return1.csv"
 
-StockG = StockGraph(file_path=file_path,top_k=3)
-ticker_to_id, edge_index,nodes = StockG.get_graph()
-print("\nTicker to ID:")
-print(ticker_to_id)
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# file_path = BASE_DIR/"data"/"processed"/"Return1.csv"
 
-print("\nEdge index:")
-print(edge_index)
+# StockG = StockGraph(file_path=file_path,top_k=3)
+# ticker_to_id, edge_index,nodes = StockG.get_graph()
+# print("\nTicker to ID:")
+# print(ticker_to_id)
 
-print("\nEdge index shape:")
-print(edge_index.shape)
+# print("\nEdge index:")
+# print(edge_index)
 
-print("\nNodes:")
-print(nodes)
+# print("\nEdge index shape:")
+# print(edge_index.shape)
 
-print("\nNumber of nodes:")
-print(nodes.shape)
+# print("\nNodes:")
+# print(nodes)
+
+# print("\nNumber of nodes:")
+# print(nodes.shape)
